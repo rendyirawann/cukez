@@ -1,0 +1,208 @@
+<div class="tab-pane fade show active" id="mobil" role="tabpanel" aria-labelledby="mobil-tab">
+                            <div class="row">
+                                <?php
+                                $mobil = $conn->query("SELECT * FROM pricelist WHERE kategori = 'mobil'");
+                                while ($row = $mobil->fetch_assoc()) { ?>
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <div class="mt-5 card border mb-3" style="max-width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <?= $row['tipe_mobil']; ?>
+                                            </h5>
+                                            <p class="card-text">
+                                                <?= rupiah($row['harga']); ?>
+                                            </p>
+                                            <input class="form-control form-control-sm quantity" name="quantity"
+                                                type="hidden" id="input_<?= $row['id']; ?>" placeholder=" Jumlah"
+                                                value="1"><br>
+                                            <button class="btn btn-primary add-order" id="<?= $row['id']; ?>"
+                                                onclick="addOrder(<?= $row['id']; ?>);">Tambah</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="tab-pane fade" id="motor" role="tabpanel" aria-labelledby="motor-tab">
+                            <div class="row">
+                                <?php
+                                $motor = $conn->query("SELECT * FROM pricelist WHERE kategori = 'motor'");
+                                while ($row = $motor->fetch_assoc()) { ?>
+                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                        <div class="mt-5 card border mb-3" style="max-width: 18rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $row['tipe_mobil']; ?></h5>
+                                                <p class="card-text"><?= rupiah($row['harga']); ?></p>
+                                                <input class="form-control form-control-sm quantity" name="quantity"
+                                                type="hidden" id="input_<?= $row['id']; ?>" placeholder=" Jumlah"
+                                                value="1"><br>
+                                            <button class="btn btn-primary add-order" id="<?= $row['id']; ?>"
+                                                onclick="addOrder(<?= $row['id']; ?>);">Tambah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+
+
+                        <p>Didn't know your Car Type? here, click button bellow to look your Car's Type</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#exampleModalScrollable" id="#modalScroll">What's Your Car Type?</button>
+
+                    <!-- Modal Scrollable -->
+          <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalScrollableTitle">What's Your Car Type?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5 class="font-weight-bold">Car Type</h5>
+                  <hr>
+                  <h6 class="font-weight-bold">Sedan</h6>
+                  <hr>
+                  <p>1. Toyota Vios<br>
+2. Nissan Skyline<br>
+3. Honda City<br>
+4. Honda Civic<br>
+5. KIA Optima<br>
+6. Toyota Corolla Altis<br>
+7. Honda Accord<br>
+8. Nissan Teana<br>
+9. Toyota Camry<br>
+10. Mazda 6<br>
+11. BMW Seri 3<br>
+12. Mercedes-Benz C-Class<br>
+13. Hyundai Ioniq Electric<br></p>
+<hr>
+                  <h6 class="font-weight-bold">SUV</h6>
+                  <hr>
+                  <p>1. Toyota Rush<br>
+2. Honda HR-V<br>
+3. Wuling Almaz<br>
+4. Toyota Corolla Cross<br>
+5. Suzuki XL7<br>
+6. Hyundai Kona Electric<br>
+7. Mitsubishi Pajero Sport<br>
+8. Toyota Fortuner<br>
+9. Honda CR-V<br>
+10. BMW X1<br>
+11. Hyundai Palisade<br>
+12. Hyundai Santa Fe<br>
+13. Mitsubishi Eclipse Cross<br></p>
+<hr>
+                  <h6 class="font-weight-bold">MiniBus</h6>
+                  <hr>
+                  <p>1. Daihatsu Gran Max<br>
+2. Daihatsu Luxio<br>
+3. Nissan Evalia<br>
+4. Suzuki APV<br>
+5. Toyota Kijang<br>
+6. Kia Carnival<br>
+7. Hyundai H1<br>
+8. Volkswagen Caravelle<br>
+9. Toyota Alphard<br>
+10. Mercedes-Benz V-Class<br></p>
+<hr>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <ul class="nav nav-tabs mt-3" id="myTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="tuneup-tab" data-bs-toggle="tab" href="#tuneup" role="tab"
+                                    aria-controls="tuneup" aria-selected="true">Tune Up</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="sparepart-tab" data-bs-toggle="tab" href="#sparepart" role="tab" aria-controls="sparepart" aria-selected="false">Spare Part</a>
+                            </li>
+                        </ul>
+
+
+
+
+                        <div class="row">
+                                    <?php
+                                    $mobil = $conn->query("SELECT * FROM services WHERE (kategori = 'Tune Up' AND kendaraan = 'mobil')");
+                                    while ($row = $mobil->fetch_assoc()) { ?>
+                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                        <div class="mt-5 card border mb-3" style="max-width: 18rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <?= $row['nama_item']; ?>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <?= rupiah($row['harga']); ?>
+                                                </p>
+                                                <input class="form-control form-control-sm quantity" name="quantity"
+                                                    type="hidden" id="input_<?= $row['id']; ?>" placeholder=" Jumlah"
+                                                    value="1"><br>
+                                                <button class="btn btn-primary add-order" id="<?= $row['id']; ?>"
+                                                    onclick="addOrder(<?= $row['id']; ?>);">Tambah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+
+
+
+
+
+                                <div class="tab-pane fade" id="motor" role="tabpanel" aria-labelledby="motor-tab">
+                                
+                            </div>   
+
+
+
+                            <div class="tab-pane fade show active" id="mobil" role="tabpanel" aria-labelledby="mobil-tab">
+                                
+                                
+                            </div>
+
+
+
+
+                            <div class="tab-content" id="myTabContent">
+                        
+                        
+                    </div>
+
+
+                    <div class="row">
+                                    <?php
+                                    $motor = $conn->query("SELECT * FROM services WHERE (kategori = 'Sparepart' AND kendaraan = 'mobil')");
+                                    while ($row = $motor->fetch_assoc()) { ?>
+                                        <div class="col-sm-3 col-md-3 col-lg-3">
+                                            <div class="mt-5 card border mb-3" style="max-width: 18rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?= $row['nama_item']; ?></h5>
+                                                    <p class="card-text"><?= rupiah($row['harga']); ?></p>
+                                                    <input class="form-control form-control-sm quantity" name="quantity"
+                                                    type="hidden" id="input_<?= $row['id']; ?>" placeholder=" Jumlah"
+                                                    value="1"><br>
+                                                <button class="btn btn-primary add-order" id="<?= $row['id']; ?>"
+                                                    onclick="addOrder(<?= $row['id']; ?>);">Tambah</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
